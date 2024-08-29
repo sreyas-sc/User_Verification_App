@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Inter'; 
+  src: url('../../public/Fonts/Inter_28pt-Light.ttf') format('truetype');
+  font-weight: 500; /* Normal weight */
+  font-style: normal; /* Normal style */
+}
+
+*{
+  font-family: Inter;
+}
+
+
+body{
+  background-color: #212121;
+}
