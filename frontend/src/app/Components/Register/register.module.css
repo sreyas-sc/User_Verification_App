@@ -54,6 +54,7 @@
 }
 
 .submitButton{
+    max-width: fit-content;
     margin-top: 30px;
     padding: 20px;
     font-size: 12px;

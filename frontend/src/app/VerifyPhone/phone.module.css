@@ -1,0 +1,46 @@
+/* Example CSS for the phone verification form */
+
+.container {
+    padding: 20px;
+    text-align: center;
+}
+
+.header {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.subheader {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.phoneInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.submitButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: #45a049;
+}
+
+.errorMessage {
+    color: red;
+    margin-top: 10px;
+}
+
+.successMessage {
+    color: green;
+    margin-top: 10px;
+}
