@@ -51,31 +51,6 @@ exports.emailVerify = async (req, res) => {
     }
 };
 
-// exports.verifyOtp = (req, res) => {
-//     const { email, otp } = req.body;
-
-//     if (!req.session.otp || !req.session.email || !req.session.otpExpiry) {
-//         return res.status(400).json("No OTP found. Please request a new one.");
-//     }
-
-//     const currentTime = Date.now();
-//     if (currentTime > req.session.otpExpiry) {
-//         req.session.otp = null;
-//         req.session.email = null;
-//         req.session.otpExpiry = null;
-//         return res.status(400).json("OTP has expired. Please request a new one.");
-//     }
-
-//     if (req.session.otp === otp && req.session.email === email) {
-//         res.send("OTP verified successfully!");
-//         req.session.otp = null;
-//         req.session.email = null;
-//         req.session.otpExpiry = null;
-//     } else {
-//         res.status(400).json("Invalid OTP or email.");
-//     }
-// };
-
 
 exports.verifyOtp = async (req, res) => {
   const { email, otp } = req.body;

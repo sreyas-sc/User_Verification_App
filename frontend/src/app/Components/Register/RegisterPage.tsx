@@ -1,7 +1,5 @@
 
-
 "use client";
-
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Redux/store'; 
@@ -42,16 +40,19 @@ function RegisterPage() {
         }
         break;
       case "email":
+
         if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value)) {
           error = "Invalid email format.";
         }
         break;
       case "phone":
+
         if (!/^\d{10}$/.test(value)) {
           error = "Phone number must be 10 digits.";
         }
         break;
       case "aadhar":
+
         if (!/^\d{12}$/.test(value)) {
           error = "Aadhar number must be 12 digits.";
         }
@@ -94,7 +95,6 @@ function RegisterPage() {
       alert('Please fix the errors in the form.');
       return;
     }
-
     dispatch(setUserDetails(formData));
     try {
       const result = await registerAPI(formData);
@@ -109,7 +109,6 @@ function RegisterPage() {
       console.error('Error during registration:', error);
     }
   };
-
   return (
     <div>
       <div className={styles.container}>
@@ -124,7 +123,6 @@ function RegisterPage() {
               className={errors.name ? styles.errorInput : ''}
             />
             {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
-
             <label className={styles.fieldName} htmlFor="email">Email Address</label>
             <input 
               type="email" 
@@ -134,7 +132,6 @@ function RegisterPage() {
               className={errors.email ? styles.errorInput : ''}
             />
             {errors.email && <p className={styles.errorMessage}>{errors.email}</p>}
-
             <label className={styles.fieldName} htmlFor="phone">Phone Number</label>
             <input 
               type="tel" 
@@ -144,7 +141,6 @@ function RegisterPage() {
               className={errors.phone ? styles.errorInput : ''}
             />
             {errors.phone && <p className={styles.errorMessage}>{errors.phone}</p>}
-
             <label className={styles.fieldName} htmlFor="dob">Date of Birth</label>
             <input 
               type="date" 
@@ -153,7 +149,6 @@ function RegisterPage() {
               onChange={handleInputChange} 
               className={styles.dobfield}
             />
-
             <label className={styles.fieldName} htmlFor="aadhar">Aadhar No</label>
             <input 
               type="text" 
@@ -163,7 +158,6 @@ function RegisterPage() {
               className={errors.aadhar ? styles.errorInput : ''}
             />
             {errors.aadhar && <p className={styles.errorMessage}>{errors.aadhar}</p>}
-
             <label className={styles.fieldName} htmlFor="password">Password</label>
             <input 
               type="password" 
@@ -173,7 +167,6 @@ function RegisterPage() {
               className={errors.password ? styles.errorInput : ''}
             />
             {errors.password && <p className={styles.errorMessage}>{errors.password}</p>}
-
             <button className={styles.submitButton} type='submit'>Register</button>
           </form>
         </div>
