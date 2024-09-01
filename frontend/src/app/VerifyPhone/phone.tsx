@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../Redux/store';
 import { verifyPhoneOtpAPI, sendPhoneOtpAPI } from '../Services/allAPI';
 import styles from './phone.module.css';
+import { useRouter } from 'next/navigation'; // Import useRouter
 
 function PhoneVerification() {
     const [otp, setOtp] = useState<string[]>(['', '', '', '', '', '']); // Array to hold each digit
@@ -16,23 +17,13 @@ function PhoneVerification() {
 
     const phone = useSelector((state: RootState) => state.user.phone);
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+    const router = useRouter(); // Initialize router
 
     useEffect(() => {
         if (phone) {
             sendPhoneOtp();
         }
     }, [phone]);
-
-    // const sendPhoneOtp = async () => {
-    //     const reqBody = { phone };
-    //     try {
-    //         const response = await sendPhoneOtpAPI(reqBody);
-    //         console.log(response);
-    //     } catch (error) {
-    //         console.log(error);
-    //         setError('Failed to send OTP.');
-    //     }
-    // };
 
     const sendPhoneOtp = async () => {
         if (!phone || phone.length !== 10) {
@@ -64,6 +55,9 @@ function PhoneVerification() {
                 setSuccess('Phone verified successfully!');
                 setError('');
                 setIsOtpVerified(true); // Set OTP verification status to true
+                setTimeout(() => {
+                    router.push('/Dashboard'); // Redirect to dashboard after success
+                }, 1000); 
             } else {
                 setError('Failed to verify OTP. Please check the OTP and try again.');
                 setSuccess('');
