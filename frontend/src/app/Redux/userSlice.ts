@@ -1,4 +1,3 @@
-"use client";
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserState {
@@ -16,6 +15,9 @@ interface UserState {
     bank: boolean;
     gst: boolean;
   };
+  email_verify?: boolean; // Add this property if it's part of the state
+  phone_verify?: boolean; // Add this property if it's part of the state
+  aadhar_verify?: boolean; // Add this property if it's part of the state
 }
 
 const initialState: UserState = {
@@ -33,6 +35,9 @@ const initialState: UserState = {
     bank: false,
     gst: false,
   },
+  email_verify: false, // Initialize if needed
+  phone_verify: false, // Initialize if needed
+  aadhar_verify: false, // Initialize if needed
 };
 
 const userSlice = createSlice({
@@ -40,9 +45,11 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUserDetails: (state, action: PayloadAction<Partial<UserState>>) => {
+      // Update the state with the action payload
       return { ...state, ...action.payload };
     },
     setVerificationStatus: (state, action: PayloadAction<Partial<UserState['isVerified']>>) => {
+      // Update the verification status
       state.isVerified = { ...state.isVerified, ...action.payload };
     },
   },

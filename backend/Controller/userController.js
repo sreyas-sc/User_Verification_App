@@ -34,22 +34,35 @@ exports.register = async(req,res) => {
     }
 }
 
-exports.login = async(req,res) => {
-    console.log('Inside Login Method');
-    const {email,password} = req.body
-    try{
-        const existingUser = await users.findOne({email,password})
-        if(existingUser){
-            const token = jwt.sign({userId:existingUser._id},"superkey")
-            console.log(token);
-            res.status(200).json({existingUser,token})
-        }
-        else{
-            res.status(404).json('Invalid email or password')
-        }
-    }
-    catch(err){
-        res.status(500).json('Login failed'+err)
-    }
-}
 
+// const users = require('../Models/userSchema');
+
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await users.findOne({ email });
+        if (!user) {
+            return res.status(404).json("User not found");
+        }
+
+        // Direct comparison of plain passwords
+        if (password !== user.password) {
+            return res.status(400).json("Invalid credentials");
+        }
+
+        // Store user details in session
+        req.session.user = {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            email_verify: user.email_verify,
+            phone_verify: user.phone_verify,
+            aadhar_verify: user.aadhar_verify,
+        };
+
+        res.status(200).json({ user: req.session.user });
+    } catch (err) {
+        res.status(500).json("Server error");
+    }
+};

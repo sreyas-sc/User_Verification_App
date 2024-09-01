@@ -7,11 +7,6 @@
     padding: 20px;
     /* background-color: rgb(199, 199, 199); */
 
-/* 
-    border-radius: 30px;
-    background: #212121;
-    box-shadow: 15px 15px 30px rgb(25, 25, 25),
-                -15px -15px 30px rgb(60, 60, 60); */
                 background-color: #212121;
  box-shadow: 15px 15px 30px #191919,
               -15px -15px 30px #292929;
@@ -90,4 +85,19 @@
     margin-bottom: 10px;
 }
 
+
+.loginPrompt {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.loginLink {
+    color: #007bff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.loginLink:hover {
+    text-decoration: underline;
+}
 

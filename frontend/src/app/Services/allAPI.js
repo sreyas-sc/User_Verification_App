@@ -25,8 +25,8 @@ export const verifyPhoneOtpAPI = async (body) => {
     return await commonAPI("post", `${serverURL}/verify-phone-otp`, body, "");
 };
                                            
-// //login
-// export const loginAPI = async(user) => {
-// return await commonAPI("post",`${serverURL}/login`,user,"")
-// }
+//login
+export const loginAPI = async(user) => {
+return await commonAPI("post",`${serverURL}/login`,user,"")
+}
 
