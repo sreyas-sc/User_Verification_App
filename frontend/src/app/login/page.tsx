@@ -78,6 +78,8 @@ const LoginPage = () => {
             const response = await loginAPI(loginDetails);
             const user = response.data.user;
 
+            console.log(user)
+
             // Store user details in Redux store
             dispatch(setUserDetails(user));
 
