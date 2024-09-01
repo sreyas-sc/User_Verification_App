@@ -1,5 +1,6 @@
 import {serverURL} from './serverURL'
 import { commonAPI } from './commonAPI'
+import axios from 'axios';
 
 //register user
 export const registerAPI = async(user) => {
@@ -29,4 +30,13 @@ export const verifyPhoneOtpAPI = async (body) => {
 export const loginAPI = async(user) => {
 return await commonAPI("post",`${serverURL}/login`,user,"")
 }
+
+export const verifyAadharAPI = async (reqBody) => {
+    try {
+        const response = await axios.post(`${serverURL}/verify-aadhaar`, reqBody);
+        return response;
+    } catch (error) {
+        throw new Error('Failed to verify Aadhar');
+    }
+};
 

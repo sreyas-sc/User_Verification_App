@@ -1,9 +1,16 @@
 const express = require('express');
+// const express = require('express');
+// const router = express.Router();
 
+
+// const aadharController = require('../Controller/aadharController');
+const aadharController = require('../Controller/aadharController');
 const userController = require('../Controller/userController');
 const emailController = require('../Controller/emailController');
 const phoneController = require('../Controller/phoneController'); // Import phone controller
 const jwtMiddleware = require('../Middleware/jwtMiddleware');
+
+
 
 const router = express.Router();
 
@@ -24,5 +31,9 @@ router.post('/send-phone-otp', phoneController.sendPhoneOtp); // Added phone OTP
 
 // Verify entered OTP for phone
 router.post('/verify-phone-otp', phoneController.verifyPhoneOtp); // Added phone OTP verification route
+
+
+// Validate aadhar 
+router.post('/verify-aadhaar', aadharController.verifyaadhaar);
 
 module.exports = router;
