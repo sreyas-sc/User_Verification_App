@@ -11,6 +11,7 @@ const phoneController = require('../Controller/phoneController'); // Import phon
 const panController = require('../Controller/panController');
 const jwtMiddleware = require('../Middleware/jwtMiddleware');
 const addressController = require('../Controller/addressController');
+const gstController = require('../Controller/gstController');
 
 
 
@@ -42,4 +43,7 @@ router.post('/verify-pan', panController.verifyPanCard);
 
 
 router.get('/pincode/:pincode', addressController.getPincodeDetails);
+
+router.post('/verify-gst', gstController.verifyGst); // Added phone OTP verification route
+
 module.exports = router;

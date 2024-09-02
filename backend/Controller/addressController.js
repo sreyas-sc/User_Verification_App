@@ -3,20 +3,19 @@ const users = require('../Models/userSchema');
 
 exports.getPincodeDetails = async (req, res) => {
     const { pincode } = req.params; // Extract pincode from request params
-    const userId = req.payload;
+    // const email = req.body;
+    const { email } = req.body;
+    console.log(email);
 
     try {
-        // Check if the user exists
-        const existingUser = await users.findOne({ _id: userId });
 
-        if (existingUser) {
             const options = {
                 method: 'GET',
                 hostname: 'india-pincode-with-latitude-and-longitude.p.rapidapi.com',
                 port: null,
                 path: `/api/v1/pincode/${pincode}`, // Use the dynamic pincode
                 headers: {
-                    'x-rapidapi-key': 'e140319af7msh2f0fbd7d73d443cp119272jsnd01a051ac171', // Replace with your API key
+                    'x-rapidapi-key': '067729ede1mshd3cbe5f1764515ap1c14fajsn824affe75c15', 
                     'x-rapidapi-host': 'india-pincode-with-latitude-and-longitude.p.rapidapi.com'
                 },
                 timeout: 5000 // Set a timeout of 5 seconds
@@ -43,7 +42,7 @@ exports.getPincodeDetails = async (req, res) => {
                                     res.status(404).json({ message: 'Pincode not found' });
                                 } else {
                                     // Save the pincode in the database
-                                    await users.updateOne({ _id: userId }, { $set: { address: pincode } });
+                                    await users.updateOne({ email: email }, { $set: { address: pincode , address_verify: true} });
                                     res.json({ message: 'Pincode verified and updated successfully', response });
                                 }
                             } else {
@@ -73,9 +72,7 @@ exports.getPincodeDetails = async (req, res) => {
             });
 
             apiReq.end();
-        } else {
-            res.status(401).json({ message: 'User not Registered' });
-        }
+        
     } catch (error) {
         console.error(`Unexpected error: ${error.message}`);
         res.status(500).json({ message: 'Internal server error', error: error.message });

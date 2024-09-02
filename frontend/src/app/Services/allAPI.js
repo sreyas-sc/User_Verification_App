@@ -57,8 +57,8 @@ export const verifyPanAPI = async (data) => {
 
 
 // 
-export const verifyAddressAPI = async(addr,reqHeader) => {
-    return await commonAPI("get",`${serverURL}/pincode/${addr}`,"",reqHeader)
+export const verifyAddressAPI = async(addr,reqBody) => {
+    return await commonAPI("get",`${serverURL}/pincode/${addr}`,reqBody,"")
 }
 
 

@@ -1,31 +1,34 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from "react-redux";
 import { setVerificationStatus } from "@/app/Redux/userSlice";
 import { verifyGstAPI } from '../Services/allAPI';
 import { RootState } from "@/app/Redux/store";
 import Swal from 'sweetalert2';
+import { setUserDetails } from '../Redux/userSlice';
+
 import styles from './gst.module.css';
+// import { setVerificationStatus } from '../Redux/userSlice';
+
 
 function Gst() {
+    const user = useSelector((state: RootState) => state.user);
     const [gstNo, setGstNo] = useState("");
     const [status, setStatus] = useState(false);
     const dispatch = useDispatch();
+    const router = useRouter();
     const isVerified = useSelector((state: RootState) => state.user.isVerified.gst);
 
     // API call to verify GST number
     const verifyGst = async () => {
-        const token = sessionStorage.getItem('token');
-        const reqHeader = {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + token
-        };
+     
         const reqBody = {
-            gstin: gstNo
+            gstin: gstNo,  email: user.email
         };
         try {
-            const response = await verifyGstAPI(reqBody, reqHeader);
+            const response = await verifyGstAPI(reqBody);
             if (response.status === 200) {
                 Swal.fire({
                     title: 'Success',
@@ -34,7 +37,15 @@ function Gst() {
                     confirmButtonText: 'OK'
                 });
                 setStatus(true);
+                dispatch(setUserDetails({ gst_verify: true }));
+                dispatch(setUserDetails({ gst: gstNo }));
                 dispatch(setVerificationStatus({ gst: true }));
+                // sessionStorage.setItem('gst', gstNo);
+                
+
+                setTimeout(() => {
+                    router.push('/Dashboard'); // Redirect to dashboard
+                  }, 2000);
             } else {
                 Swal.fire({
                     title: 'Error',

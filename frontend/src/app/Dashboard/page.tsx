@@ -8,6 +8,7 @@ import { RootState } from '@/app/Redux/store';
 import { useRouter } from 'next/navigation';
 import { setUserDetails } from '../Redux/userSlice';
 import styles from './dashboard.module.css';
+import { setVerificationStatus } from '../Redux/userSlice';
 
 const Dashboard = () => {
   const user = useSelector((state: RootState) => state.user);
@@ -75,14 +76,14 @@ const Dashboard = () => {
         )}
         {renderCard(
           'Aadhar',
-          user.aadhar_verify ?? false,
+          (user.isVerified.aadhar || user.aadhar_verify) ?? false,
           '/Aadhar',
           `Aadhar: ${user.aadhar}`,
           true
         )}
         {renderCard(
           'GST',
-          user.gst_verify ?? false,
+          (user.gst_verify || user.isVerified.gst)?? false,
           '/Gst',
           `GST: ${user.gst}`,
           true
@@ -97,7 +98,7 @@ const Dashboard = () => {
 
         {renderCard(
           'PAN',
-          user.pan_verify ?? false,
+          (user.isVerified.pan || user.pan_verify )  ?? false,
           '/Pan',
           `PAN: ${user.pan}`,
           true

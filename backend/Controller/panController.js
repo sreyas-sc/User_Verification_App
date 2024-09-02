@@ -53,6 +53,8 @@ exports.verifyPanCard = async (req, res) => {
                 return res.status(404).json({ message: "User not found" });
             }
 
+            
+
             // Update session storage if necessary
             req.session.user = {
                 ...req.session.user,

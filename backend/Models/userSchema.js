@@ -53,7 +53,17 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
+    },
+    address:{
+        type:String,
+        required:false,
+        default:""
+
+    },
+    address_verify:{
+        type:Boolean,
+        default:false
+    },
 })
 
 const users = mongoose.model('users',userSchema)

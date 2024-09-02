@@ -2,10 +2,12 @@ const users = require('../Models/userSchema');
 const https = require('https');
 
 exports.verifyGst = async(req, res) => {
-    const { gstin } = req.body; // Extract GSTIN from the request body
-    const userId = req.payload;
+    const { gstin, email } = req.body; // Extract GSTIN from the request body
+    // const userId = req.payload;
+    console.log(gstin, email);
 
-    const existingUser = await users.findOne({ _id: userId });
+
+    const existingUser = await users.findOne({ email: email });
     if(existingUser){
         const options = {
             method: 'POST',
@@ -13,7 +15,7 @@ exports.verifyGst = async(req, res) => {
             port: null,
             path: '/v3/tasks/sync/verify_with_source/ind_gst_certificate',
             headers: {
-                'x-rapidapi-key': 'e140319af7msh2f0fbd7d73d443cp119272jsnd01a051ac171', // Replace with your actual API key
+                'x-rapidapi-key': '067729ede1mshd3cbe5f1764515ap1c14fajsn824affe75c15', 
                 'x-rapidapi-host': 'gst-verification.p.rapidapi.com',
                 'Content-Type': 'application/json'
             }
@@ -31,7 +33,7 @@ exports.verifyGst = async(req, res) => {
                 try {
                     const response = JSON.parse(body.toString());
                     if(response.status == 'completed'){
-                        await users.updateOne({ _id: userId }, { $set: { gst: gstin } });
+                        await users.updateOne({ email: email }, { $set: { gst_verify: true, gst: gstin } });
                         res.json({ message: 'GST verified', response });
                     }
                     else{
@@ -49,8 +51,8 @@ exports.verifyGst = async(req, res) => {
         });
     
         apiReq.write(JSON.stringify({
-            task_id: '74f4c926-250c-43ca-9c53-453e87ceacd1', // Use your actual task_id
-            group_id: '8e16424a-58fc-4ba4-ab20-5bc8e7c3c41e', // Use your actual group_id
+            task_id: '74f4c926-250c-43ca-9c53-453e87ceacd1', 
+            group_id: '8e16424a-58fc-4ba4-ab20-5bc8e7c3c41e', 
             data: {
                 gstin: gstin // Use GSTIN from the request body
             }

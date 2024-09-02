@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { verifyAadharAPI } from '../Services/allAPI'; // Assuming you have an API function for Aadhar verification
 import { setUserDetails } from '../Redux/userSlice'; // Assuming you have this action
 import styles from './aadhar.module.css'; // Add styles for this page
+import { setVerificationStatus } from '../Redux/userSlice';
 
 const VerifyAadhar = () => {
   const user = useSelector((state: RootState) => state.user);
@@ -16,6 +17,8 @@ const VerifyAadhar = () => {
   const [success, setSuccess] = useState('');
   const router = useRouter();
   const dispatch = useDispatch();
+  const isVerified = useSelector((state:  RootState) => state.user.isVerified.aadhar);
+
 
   const handleAadharChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAadharInput(e.target.value);
@@ -39,7 +42,7 @@ const VerifyAadhar = () => {
         
         // Optionally update user details in the Redux store
         dispatch(setUserDetails({ aadhar_verify: true }));
-        // dispatch(setVerificationStatus({ aadhar: true }));
+        dispatch(setVerificationStatus({ aadhar: true }));
         
         // Save verification status to session storage
         sessionStorage.setItem('aadhar_verify', 'true');
