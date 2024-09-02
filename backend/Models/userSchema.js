@@ -27,6 +27,25 @@ const userSchema = new mongoose.Schema({
     aadhar_verify:{
         type:Boolean
     },
+    pan:{
+        type:String,
+        required:false,
+        default:""
+    },
+    pan_verify:{
+        type:Boolean,
+        default:false    
+    },
+    gst:{
+        type:String,
+        required:false,
+        default:""
+
+    },
+    gst_verify:{
+        type:Boolean,
+        default:false
+    },
     dob:{
         type:Date,
         required:true

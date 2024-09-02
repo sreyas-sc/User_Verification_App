@@ -1,69 +1,3 @@
-// "use client";
-
-// import React, { useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { RootState } from '@/app/Redux/store';
-// import { useRouter } from 'next/navigation';
-// import { verifyAadharAPI } from '../Services/allAPI'; // Assuming you have an API function for Aadhar verification
-// import styles from './aadhar.module.css'; // Add styles for this page
-
-// const VerifyAadhar = () => {
-//   const user = useSelector((state: RootState) => state.user);
-//   const [aadharInput, setAadharInput] = useState('');
-//   const [error, setError] = useState('');
-//   const [success, setSuccess] = useState('');
-//   const router = useRouter();
-
-//   const handleAadharChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setAadharInput(e.target.value);
-//   };
-
-//   const handleVerify = async () => {
-//     // console.log(user.aadhar)
-//     // if (aadharInput !== user.aadhar) {
-//     //   setError('Aadhar numbers do not matches.');
-//     //   return;
-//     // }
-
-//     const reqBody = { aadhar: aadharInput };
-//     console.log(aadharInput)
-
-//     try {
-//       const response = await verifyAadharAPI(reqBody);
-//       if (response.status === 200) {
-//         setSuccess('Aadhar verified successfully!');
-//         setError('');
-//         router.push('/Dashboard'); // Redirect to dashboard
-//       } else {
-//         setError('Failed to verify Aadhar. Please try again.');
-//         setSuccess('');
-//       }
-//     } catch (error) {
-//       setError('An error occurred during verification.');
-//       setSuccess('');
-//     }
-//   };
-
-//   return (
-//     <div className={styles.container}>
-//       <h1 className={styles.header}>Verify Aadhar</h1>
-//       <p className={styles.subheader}>Please re-enter your Aadhar number for verification.</p>
-//       <input
-//         type="text"
-//         placeholder="Enter Aadhar number"
-//         value={aadharInput}
-//         onChange={handleAadharChange}
-//         className={styles.input}
-//       />
-//       <button onClick={handleVerify} className={styles.verifyButton}>Verify Aadhar</button>
-//       {error && <p className={styles.errorMessage}>{error}</p>}
-//       {success && <p className={styles.successMessage}>{success}</p>}
-//     </div>
-//   );
-// };
-
-// export default VerifyAadhar;
-
 
 "use client";
 
@@ -104,10 +38,11 @@ const VerifyAadhar = () => {
         setError('');
         
         // Optionally update user details in the Redux store
-        dispatch(setUserDetails({ ...user, aadhar_verify: true }));
+        dispatch(setUserDetails({ aadhar_verify: true }));
+        // dispatch(setVerificationStatus({ aadhar: true }));
         
         // Save verification status to session storage
-        sessionStorage.setItem('aadhar_verified', 'true');
+        sessionStorage.setItem('aadhar_verify', 'true');
 
         // Wait for 2 seconds before redirecting
         setTimeout(() => {

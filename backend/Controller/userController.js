@@ -22,6 +22,7 @@ exports.register = async(req,res) => {
                 phone_verify:false,
                 aadhar,
                 aadhar_verify:false,
+                
                 dob,
                 password
             })
@@ -58,9 +59,13 @@ exports.login = async (req, res) => {
             email: user.email,
             phone: user.phone,
             aadhar: user.aadhar,
+            pan: user.pan,
+            gst: user.gst,
             email_verify: user.email_verify,
             phone_verify: user.phone_verify,
             aadhar_verify: user.aadhar_verify,
+            pan_verify: user.pan_verify,
+            gst_verify: user.gst_verify,
         };
 
         res.status(200).json({ user: req.session.user });

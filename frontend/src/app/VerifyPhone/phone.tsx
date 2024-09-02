@@ -46,7 +46,7 @@ function PhoneVerification() {
 
     const verifyOtp = async () => {
         const otpString = otp.join('');
-        console.log('Typed OTP:', otpString);
+        // console.log('Typed OTP:', otpString);
         const reqBody = { phone, otp: otpString };
         try {
             const response = await verifyPhoneOtpAPI(reqBody);

@@ -31,6 +31,8 @@ export const loginAPI = async(user) => {
 return await commonAPI("post",`${serverURL}/login`,user,"")
 }
 
+
+// Aadhar verification API
 export const verifyAadharAPI = async (reqBody) => {
     try {
         const response = await axios.post(`${serverURL}/verify-aadhaar`, reqBody);
@@ -40,3 +42,27 @@ export const verifyAadharAPI = async (reqBody) => {
     }
 };
 
+// PAN Verification API
+export const verifyPanAPI = async (data) => {
+    try {
+        const response = await axios.post(`${serverURL}/verify-pan`, data);
+        console.log("122334234324")
+        return response;
+
+    } catch (error) {
+        console.error('Error in verifyPanAPI:', error);
+        throw error;
+    }
+};
+
+
+// 
+export const verifyAddressAPI = async(addr,reqHeader) => {
+    return await commonAPI("get",`${serverURL}/pincode/${addr}`,"",reqHeader)
+}
+
+
+//verify gst
+export const verifyGstAPI = async(reqBody,reqHeader) => {
+    return await commonAPI("post",`${serverURL}/verify-gst`,reqBody,reqHeader)
+}

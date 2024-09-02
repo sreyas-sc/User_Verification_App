@@ -8,7 +8,9 @@ const aadharController = require('../Controller/aadharController');
 const userController = require('../Controller/userController');
 const emailController = require('../Controller/emailController');
 const phoneController = require('../Controller/phoneController'); // Import phone controller
+const panController = require('../Controller/panController');
 const jwtMiddleware = require('../Middleware/jwtMiddleware');
+const addressController = require('../Controller/addressController');
 
 
 
@@ -36,4 +38,8 @@ router.post('/verify-phone-otp', phoneController.verifyPhoneOtp); // Added phone
 // Validate aadhar 
 router.post('/verify-aadhaar', aadharController.verifyaadhaar);
 
+router.post('/verify-pan', panController.verifyPanCard);
+
+
+router.get('/pincode/:pincode', addressController.getPincodeDetails);
 module.exports = router;
