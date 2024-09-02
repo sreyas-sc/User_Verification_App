@@ -44,6 +44,6 @@ router.post('/verify-pan', panController.verifyPanCard);
 
 router.get('/pincode/:pincode', addressController.getPincodeDetails);
 
-router.post('/verify-gst', gstController.verifyGst); // Added phone OTP verification route
+router.post('/verify-gst', gstController.verifyGst); 
 
 module.exports = router;
