@@ -41,13 +41,16 @@ router.post('/verify-phone-otp', phoneController.verifyPhoneOtp); // Added phone
 // Validate aadhar 
 router.post('/verify-aadhaar', aadharController.verifyaadhaar);
 
+// Validate pan
 router.post('/verify-pan', panController.verifyPanCard);
 
-
+// Validate pin code 
 router.get('/pincode/:pincode', addressController.getPincodeDetails);
 
+// Validate gst number
 router.post('/verify-gst', gstController.verifyGst); 
 
+// Validate bank account number 
 router.post('/bank-account', bankController.verifyAccount);
 
 module.exports = router;

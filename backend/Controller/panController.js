@@ -46,14 +46,13 @@ exports.verifyPanCard = async (req, res) => {
                         pan: pan 
                     } 
                 },
-                { new: true } // Return the updated document
+                { new: true } 
+                // Return the updated document
             );
 
             if (!user) {
                 return res.status(404).json({ message: "User not found" });
             }
-
-            
 
             // Update session storage if necessary
             req.session.user = {

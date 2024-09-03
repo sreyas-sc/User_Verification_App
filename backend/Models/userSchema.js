@@ -64,6 +64,15 @@ const userSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
+    bank:{
+        type:String,
+        required:false,
+        default:""
+    },
+    bank_verify:{
+        type:Boolean,
+        default:false
+        },
 })
 
 const users = mongoose.model('users',userSchema)

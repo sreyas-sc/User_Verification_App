@@ -61,11 +61,13 @@ exports.login = async (req, res) => {
             aadhar: user.aadhar,
             pan: user.pan,
             gst: user.gst,
+            bank:  user.bank,
             email_verify: user.email_verify,
             phone_verify: user.phone_verify,
             aadhar_verify: user.aadhar_verify,
             pan_verify: user.pan_verify,
             gst_verify: user.gst_verify,
+            bank_verify: user.bank_verify,
         };
 
         res.status(200).json({ user: req.session.user });

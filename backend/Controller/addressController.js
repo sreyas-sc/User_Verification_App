@@ -2,7 +2,8 @@ const https = require('https');
 const users = require('../Models/userSchema');
 
 exports.getPincodeDetails = async (req, res) => {
-    const { pincode } = req.params; // Extract pincode from request params
+    // Extract pincode from request params
+    const { pincode } = req.params; 
     // const email = req.body;
     const { email } = req.body;
     console.log(email);
@@ -13,12 +14,13 @@ exports.getPincodeDetails = async (req, res) => {
                 method: 'GET',
                 hostname: 'india-pincode-with-latitude-and-longitude.p.rapidapi.com',
                 port: null,
-                path: `/api/v1/pincode/${pincode}`, // Use the dynamic pincode
+                path: `/api/v1/pincode/${pincode}`, 
                 headers: {
                     'x-rapidapi-key': '067729ede1mshd3cbe5f1764515ap1c14fajsn824affe75c15', 
                     'x-rapidapi-host': 'india-pincode-with-latitude-and-longitude.p.rapidapi.com'
                 },
-                timeout: 5000 // Set a timeout of 5 seconds
+                // Set a timeout of 5 seconds
+                timeout: 5000 
             };
 
             const apiReq = https.request(options, function (apiRes) {
