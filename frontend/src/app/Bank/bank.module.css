@@ -1,0 +1,49 @@
+/* bankverify.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.header {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.verifyButton {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.verifyButton:hover {
+    background-color: #005bb5;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+}
+
+.error {
+    margin-top: 20px;
+    color: red;
+}

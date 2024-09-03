@@ -12,6 +12,8 @@ const panController = require('../Controller/panController');
 const jwtMiddleware = require('../Middleware/jwtMiddleware');
 const addressController = require('../Controller/addressController');
 const gstController = require('../Controller/gstController');
+// const bankController = require('../Controller/bankController');
+const bankController = require('../Controller/bankController')
 
 
 
@@ -45,5 +47,7 @@ router.post('/verify-pan', panController.verifyPanCard);
 router.get('/pincode/:pincode', addressController.getPincodeDetails);
 
 router.post('/verify-gst', gstController.verifyGst); 
+
+router.post('/bank-account', bankController.verifyAccount);
 
 module.exports = router;

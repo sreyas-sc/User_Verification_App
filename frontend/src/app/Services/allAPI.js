@@ -66,3 +66,15 @@ export const verifyAddressAPI = async(addr,reqBody) => {
 export const verifyGstAPI = async(reqBody,reqHeader) => {
     return await commonAPI("post",`${serverURL}/verify-gst`,reqBody,reqHeader)
 }
+
+
+
+
+export const verifyAccountAPI = async (reqBody) => {
+    try {
+      const response = await axios.post(`${serverURL}/bank-account`, reqBody);
+      return response;
+    } catch (error) {
+      throw new Error("Failed to verify Account");
+    }
+  };
